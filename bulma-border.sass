@@ -1,0 +1,79 @@
+.has-border
+    border: solid 1px $grey-lighter
+    @each $s in solid, dotted, dashed, double
+        &-#{$s}
+            border-style: #{$s}
+    @for $i from 1 through 12
+        &-width-#{$i}
+            border-width: #{$i}px
+        &-radius-#{$i}
+            border-radius: #{$i}px
+    @each $name, $value in $spacing-values
+        @if #{$name} != 'auto' and #{$name} != '0'
+            &-width-#{$name}r
+                border-width: $value
+            &-radius-#{$name}r
+                border-radius: $value
+    @each $s in top, right, bottom, left
+        &-no#{$s}
+            border-#{$s}: none
+        &-#{$s}-only
+            @each $ss in top, right, bottom, left
+                @if #{$ss} != #{$s}
+                    border-#{$ss}: none
+    @each $s in top, bottom
+        @each $ss in left, right
+            &-#{$s}-#{$ss}-radiusless
+                border-#{$s}-#{$ss}-radius: 0
+    &-nox
+        border-right: none
+        border-left: none
+    &-noy
+        border-top: none
+        border-bottom: none
+    &-round
+        border-radius: 999px
+    &-circle
+        border-radius: 50%
+    @each $name, $pair in $colors
+        $color: nth($pair, 1)
+        &-#{$name}
+            border-color: $color
+        @if length($pair) >= 4
+            $color-light: nth($pair, 3)
+            $color-dark: nth($pair, 4)
+            &-#{$name}-light
+                border-color: $color-light
+            &-#{$name}-dark
+                border-color: $color-dark
+    @each $name, $shade in $shades
+        &-#{$name}
+            border-color: $shade
+
++mobile
+    .has-border.has-noborder-mobile
+        border: none
++tablet
+    .has-border.has-noborder-tablet
+        border: none
++tablet-only
+    .has-border.has-noborder-tablet-only
+        border: none
++touch
+    .has-border.has-noborder-touch
+        border: none
++desktop
+    .has-border.has-noborder-desktop
+        border: none
++desktop-only
+    .has-border.has-noborder-desktop-only
+        border: none
++widescreen
+    .has-border.has-noborder-widescreen
+        border: none
++widescreen-only
+    .has-border.has-noborder-widescreen-only
+        border: none
++fullhd
+    .has-border.has-noborder-fullhd
+        border: none
